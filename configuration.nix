@@ -90,7 +90,24 @@
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp"];
     packages = with pkgs; [
       
-  	firefox
+  	
+	
+
+    ];
+  };
+
+  # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "bob";
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  	
+	firefox
 	thunderbird
 	abiword
 	acpi
@@ -107,22 +124,11 @@
 	filezilla
 	networkmanagerapplet
 	freetube
-
-    ];
-  };
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "bob";
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+	geany
+	spice-up
+	git
+	curl
+	wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
